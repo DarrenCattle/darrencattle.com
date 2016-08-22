@@ -66,13 +66,18 @@ function dispFixtures(json) {
 		var cell = row.insertCell();
 		cell.innerHTML = f.awayTeamName;
 		var cell = row.insertCell();
-		cell.innerHTML = (new Date(f.date));
-		var cell = row.insertCell();
+		var d = (new Date(f.date)).toString();
+		cell.innerHTML = d.substring(0,25);
+		var timezone = document.getElementById('timezone');
+		timezone.innerHTML = 'Time: ' + d.substring(25,60);
+
+		/*var cell = row.insertCell();
 		cell.innerHTML = f.odds.awayWin;
 		var cell = row.insertCell();
 		cell.innerHTML = f.odds.homeWin;
 		var cell = row.insertCell();
-		cell.innerHTML = f.odds.draw;
+		cell.innerHTML = f.odds.draw;*/
+
 		var cell = row.insertCell();
 		var score = f.result.goalsHomeTeam + "-" + f.result.goalsAwayTeam;
 		cell.innerHTML = score.includes("null") ? 'N/A' : score;
