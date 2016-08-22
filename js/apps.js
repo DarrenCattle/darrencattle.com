@@ -10,7 +10,7 @@ xhrProto.open = function (method, url) {
     return origOpen.apply(this, arguments);
 };
 
-//'http://api.football-data.org/v1/competitions/430';
+//Start in the italian league, id 438
 var url = 'http://api.football-data.org/v1/competitions/438/leagueTable';
 var xmlhttp = new XMLHttpRequest();
 var id_mapping = {	"Premier League": 426,
@@ -20,6 +20,7 @@ var id_mapping = {	"Premier League": 426,
 					"Portugese Liga": 439
 };
 var id_current = 438;
+var day = 1;
 
 sendRequest(url);
 
@@ -27,14 +28,14 @@ xmlhttp.onreadystatechange = function() {
 	if (xmlhttp.readyState == XMLHttpRequest.DONE) {
 		var result = xmlhttp.response;
 		result = JSON.parse(result);
-		//console.log(result);
 		if(xmlhttp._url.includes("leagueTable")) {
+			day = result.matchday;
 			dispStanding(result);
-			url = 'http://api.football-data.org/v1/competitions/' + id_current + '/fixtures?matchday=1';
+			url = 'http://api.football-data.org/v1/competitions/' + id_current + '/fixtures?matchday=' + day;
 			sendRequest(url);
 		}
 		if(xmlhttp._url.includes("fixtures")) {
-			dispFixtures(result);
+			dispFixtures(result, day);
 		}
 	}
 };
@@ -44,10 +45,14 @@ function sendRequest(url) {
 	xmlhttp.setRequestHeader("X-Auth-Token", "e5137d9c30a84d3d9ad3d0745923aa52");
 	xmlhttp.send();
 	id_current = url.replace('http://api.football-data.org/v1/competitions/','').replace('/leagueTable','');
-}
+};
 
 function dispFixtures(json) {
 	var fixtures = json["fixtures"];
+
+	var matchDiv = document.getElementById('current-day');
+	matchDiv.innerHTML = 'Matchday ' + day;
+
 	var myTableDiv = document.getElementById('matches');
 	myTableDiv.innerHTML = '';
 
@@ -61,13 +66,16 @@ function dispFixtures(json) {
 		var cell = row.insertCell();
 		cell.innerHTML = f.awayTeamName;
 		var cell = row.insertCell();
-		cell.innerHTML = (new Date(f.date)).toString().replace('GMT-0700 (Pacific Daylight Time)','');
+		cell.innerHTML = (new Date(f.date));
 		var cell = row.insertCell();
 		cell.innerHTML = f.odds.awayWin;
 		var cell = row.insertCell();
 		cell.innerHTML = f.odds.homeWin;
 		var cell = row.insertCell();
 		cell.innerHTML = f.odds.draw;
+		var cell = row.insertCell();
+		var score = f.result.goalsHomeTeam + "-" + f.result.goalsAwayTeam;
+		cell.innerHTML = score.includes("null") ? 'N/A' : score;
 	}
 };
 
