@@ -1,0 +1,30 @@
+body {
+	background-color: #000;
+	color: #FFF;
+}
+.leagues {
+	text-align: center;
+}
+.leaguebox {
+	display: inline-block;
+}
+.spacer {
+	width: 100%;
+	height: 50px;
+}
+.black {
+	color: #000;
+}
+.gallery {
+	width: 90%;
+}
+.dc-box {
+	width: 90%;
+	margin-left: 5%;
+}
+.a-button {
+	color: #FFF;
+	line-height: 2;
+	margin-bottom: 4px;
+	display: block;
+}

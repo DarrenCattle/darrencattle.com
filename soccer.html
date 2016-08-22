@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<title>Darren Cattle</title>
+
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+		<meta name="description" content="Darren Cattle Public Page"/>
+		<meta name="keywords" content="darren, cattle, developer, architect, engineer, website, design, minimal"/>
+		<meta name="author" content="Darren Cattle"/>
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/dc.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/apps.js"></script>
+		<script type="text/javascript" src="js/jq.js"></script>
+
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-fixed-top" style="background-color: #F82672">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" style="color: #000">Darren Cattle</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="index.html" class="black">Home</a></li>
+					<li><a href="about.html" class="black">About</a></li>
+					<li><a href="jobs.html" class="black">Jobs</a></li>
+					<li class="active"><a href="soccer.html" class="black">Soccer</a></li>
+					<li><a href="art.html" class="black">Art</a></li>
+					<li><a href="black.html" class="black">Black Page</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="spacer">
+			&nbsp;
+		</div>
+
+		<div class="text-center">
+			<h1>Football API</h1>
+			<h2>favorite league, favorite stats</h2>
+			<select class="btn btn-primary dropdown-toggle" id="table-current">
+				<option value="1">Serie A</option>
+				<option value="2">Premier League</option>
+				<option value="3">La Liga</option>
+				<option value="4">Bundesliga</option>
+				<option value="5">Portugese Liga</option>
+			</select>
+		</div>
+
+		<div class="leagues" id="leagues">
+
+			<div class="leaguebox">
+			<h3 id="league_name" class="text-center">Serie A</h3>
+				<table class="table table-bordered">
+					<thead><tr>
+					    <th class="text-center">Position</th>
+					    <th class="text-center">Team</th>
+					    <th class="text-center">Points</th>
+					</tr></thead>
+					<tbody id="standing"/>
+				</table>
+			</div>
+			<div class="leaguebox">
+			<h3 class="text-center">Matchday 1</h3>
+				<table class="table table-bordered">
+					<thead><tr>
+					    <th class="text-center">Home Team</th>
+					    <th class="text-center">Away Team</th>
+					    <th class="text-center">Time (GMT-0700)</th>
+					    <th class="text-center">Home Odds</th>
+					    <th class="text-center">Away Odds</th>
+					    <th class="text-center">Draw Odds</th>
+					</tr></thead>
+					<tbody id="matches"/>
+				</table>
+			</div>
+		</div>
+		<div class="text-center" id="insert">
+			<a href="http://api.football-data.org/">http://api.football-data.org/</a>
+		</div>
+	</body>
+</html>
